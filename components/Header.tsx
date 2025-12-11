@@ -13,6 +13,24 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleOrderClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setIsMenuOpen(false);
+    
+    const section = document.getElementById('pedidos');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+      
+      // Aguarda a rolagem iniciar/terminar e foca no primeiro campo (input)
+      setTimeout(() => {
+        const firstInput = section.querySelector('input') as HTMLElement;
+        if (firstInput) {
+          firstInput.focus({ preventScroll: true });
+        }
+      }, 800);
+    }
+  };
+
   const navLinks = [
     { name: 'Início', href: '#inicio' },
     { name: 'A Neide', href: '#sobre' },
@@ -52,6 +70,7 @@ const Header: React.FC = () => {
           ))}
           <a 
             href="#pedidos" 
+            onClick={handleOrderClick}
             className="bg-brand-pink hover:bg-rose-500 text-white px-6 py-2.5 rounded-full font-bold shadow-md shadow-brand-pink/30 transition-all transform hover:-translate-y-0.5 flex items-center gap-2"
           >
             <ShoppingBag className="w-4 h-4" /> Encomendar
@@ -83,7 +102,7 @@ const Header: React.FC = () => {
           <a 
             href="#pedidos" 
             className="bg-brand-pink text-white text-center py-3 rounded-xl font-bold mt-2"
-            onClick={() => setIsMenuOpen(false)}
+            onClick={handleOrderClick}
           >
             Fazer Encomenda
           </a>
