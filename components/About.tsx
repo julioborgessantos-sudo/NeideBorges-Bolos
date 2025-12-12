@@ -10,9 +10,16 @@ const About: React.FC = () => {
              <div className="absolute -top-4 -left-4 w-full h-full border-4 border-brand-pink/30 rounded-3xl"></div>
              {/* Changed image to hands working/decorating to imply the personal touch */}
              <img 
-               src="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?q=80&w=800&auto=format&fit=crop" 
+               src="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?q=80&w=800&auto=format&fit=crop"
+               srcSet="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?q=80&w=400&auto=format&fit=crop&fm=webp 400w,
+                       https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?q=80&w=800&auto=format&fit=crop&fm=webp 800w,
+                       https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?q=80&w=1200&auto=format&fit=crop&fm=webp 1200w"
+               sizes="(max-width: 768px) 100vw, 50vw"
                alt="Neide Borges finalizando um bolo" 
                className="relative rounded-3xl shadow-lg w-full object-cover h-[500px]"
+               loading="lazy"
+               width="600"
+               height="500"
              />
           </div>
           

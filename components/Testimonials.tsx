@@ -21,6 +21,9 @@ const Testimonials: React.FC = () => {
                   src={t.image} 
                   alt={t.name} 
                   className="w-16 h-16 rounded-full object-cover border-2 border-brand-pink p-1 bg-white"
+                  loading="lazy"
+                  width="64"
+                  height="64"
                 />
                 <div>
                   <h4 className="font-bold text-brand-chocolate">{t.name}</h4>

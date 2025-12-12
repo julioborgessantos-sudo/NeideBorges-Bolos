@@ -3,6 +3,11 @@ import { GALLERY_ITEMS } from '../constants';
 import { Instagram } from 'lucide-react';
 
 const Gallery: React.FC = () => {
+  // Helper to generate WebP optimized URL for different widths
+  const getOptimizedUrl = (url: string, width: number) => {
+    return url.replace(/&w=\d+/, `&w=${width}&fm=webp`);
+  };
+
   return (
     <section id="galeria" className="py-20 bg-slate-50">
       <div className="container mx-auto px-6">
@@ -20,8 +25,13 @@ const Gallery: React.FC = () => {
               <div className="aspect-square overflow-hidden">
                 <img 
                   src={item.image} 
+                  srcSet={`${getOptimizedUrl(item.image, 400)} 400w, ${getOptimizedUrl(item.image, 800)} 800w`}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   alt={item.title} 
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  loading="lazy"
+                  width="400"
+                  height="400"
                 />
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-brand-chocolate/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
