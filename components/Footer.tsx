@@ -48,7 +48,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-4 text-white/80">
               <li className="flex items-start gap-3">
                 <Phone className="w-5 h-5 text-brand-pink mt-1" />
-                <span>(11) 99999-9999<br /><span className="text-xs opacity-70">Fale direto com a Neide</span></span>
+                <span>(19) 99166-1916<br /><span className="text-xs opacity-70">Fale direto com a Neide</span></span>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-brand-pink mt-1" />

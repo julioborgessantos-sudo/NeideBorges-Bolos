@@ -1,7 +1,7 @@
 import { FillingOption, GalleryItem, Testimonial } from './types';
 
 export const PRICE_PER_KG = 45.00;
-export const WHATSAPP_NUMBER = "5511999999999"; // Exemplo
+export const WHATSAPP_NUMBER = "5519991661916";
 
 export const FILLINGS: FillingOption[] = [
   { id: 'prestigio', name: 'Prestígio' },
