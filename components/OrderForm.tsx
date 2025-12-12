@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
 import { CakeDough, OrderState } from '../types';
 import { FILLINGS, PRICE_PER_KG, WHATSAPP_NUMBER } from '../constants';
@@ -61,6 +63,7 @@ const OrderForm: React.FC = () => {
 
     const fillingsNames = order.fillings
       .map(id => FILLINGS.find(f => f.id === id)?.name)
+      .filter(Boolean)
       .join(" + ");
 
     const slicesApprox = Math.floor(order.weight * 10);
@@ -74,7 +77,7 @@ const OrderForm: React.FC = () => {
 🎂 *DETALHES DO BOLO*
 ━━━━━━━━━━━━━━━━━━━━
 🍰 *Massa:* ${order.dough}
-🥣 *Recheio(s):* ${fillingsNames}
+🥣 *Recheio(s):* ${fillingsNames || "Não especificado"}
 ⚖️ *Peso:* ${order.weight}kg (aprox. ${slicesApprox} fatias)
 
 📝 *Observações Especiais:*
@@ -186,4 +189,59 @@ ${order.notes || "Nenhuma observação."}
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-600 mb-1">WhatsApp</
+                    <label className="block text-sm font-medium text-slate-600 mb-1">WhatsApp</label>
+                    <input
+                      type="tel"
+                      required
+                      className="w-full p-3 bg-white text-slate-900 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-pink/50 focus:border-brand-pink outline-none transition-all placeholder:text-slate-400"
+                      placeholder="Ex: 11 99999-9999"
+                      value={order.customerPhone}
+                      onChange={e => setOrder({ ...order, customerPhone: e.target.value })}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-600 mb-1">Endereço de Entrega (Opcional)</label>
+                    <input
+                      type="text"
+                      className="w-full p-3 bg-white text-slate-900 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-pink/50 focus:border-brand-pink outline-none transition-all placeholder:text-slate-400"
+                      placeholder="Rua, Número, Bairro"
+                      value={order.customerAddress}
+                      onChange={e => setOrder({ ...order, customerAddress: e.target.value })}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-600 mb-1">Observações</label>
+                    <textarea
+                      className="w-full p-3 bg-white text-slate-900 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-pink/50 focus:border-brand-pink outline-none transition-all h-24 resize-none placeholder:text-slate-400"
+                      placeholder="Ex: Escrever 'Parabéns João' no topo..."
+                      value={order.notes}
+                      onChange={e => setOrder({ ...order, notes: e.target.value })}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 pt-6 border-t border-slate-200">
+                <div className="flex justify-between items-end mb-4">
+                  <span className="text-slate-500 font-medium">Total Estimado</span>
+                  <span className="text-3xl font-bold text-brand-chocolate">R$ ${""}{totalPrice.toFixed(2)}</span>
+                </div>
+                <button
+                  type="submit"
+                  className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-green-200 transition-all flex items-center justify-center gap-2 text-lg transform hover:-translate-y-1"
+                >
+                  <Send className="w-5 h-5" /> Enviar Pedido no WhatsApp
+                </button>
+                <p className="text-center text-xs text-slate-400 mt-3">
+                  Ao clicar, você será redirecionado para o WhatsApp para confirmar o pedido.
+                </p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default OrderForm;
