@@ -63,27 +63,36 @@ const OrderForm: React.FC = () => {
     }
 
     const fillingsNames = order.fillings.map(id => FILLINGS.find(f => f.id === id)?.name).join(' + ');
+    const slicesApprox = Math.floor(order.weight * 10);
     
-    const message = `
-*PEDIDO - Neide Borges Confeitaria* 👩‍🍳
-----------------------------
-👤 *Cliente:* ${order.customerName}
-📞 *Tel:* ${order.customerPhone}
-📍 *Endereço:* ${order.customerAddress}
+    // Formatando mensagem usando apenas texto e separadores seguros (ASCII)
+    // Isso evita o erro  (replacement character) em alguns dispositivos
+    const message = `*PEDIDO ONLINE - NEIDE BORGES*
 
+--------------------------------
+*DADOS DO CLIENTE*
+--------------------------------
+Nome: ${order.customerName}
+Contato: ${order.customerPhone}
+Local: ${order.customerAddress || "A combinar / Retirada"}
+
+--------------------------------
 *DETALHES DO BOLO*
-🍰 *Massa:* ${order.dough}
-🥣 *Recheio(s):* ${fillingsNames}
-⚖️ *Peso:* ${order.weight}kg
+--------------------------------
+Massa: ${order.dough}
+Recheios: ${fillingsNames}
+Peso: ${order.weight}kg (aprox. ${slicesApprox} fatias)
 
-💰 *Valor Estimado:* R$ ${totalPrice.toFixed(2)}
+--------------------------------
+*OBSERVACOES*
+--------------------------------
+${order.notes || "Nenhuma observação."}
 
-📝 *Observações:* ${order.notes}
-----------------------------
-_Pedido via Site_
-    `.trim();
+*VALOR TOTAL: R$ ${totalPrice.toFixed(2)}*
+--------------------------------`;
 
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    // Usando api.whatsapp.com/send que é mais robusto para encoding que wa.me
+    const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   };
 
@@ -192,7 +201,7 @@ _Pedido via Site_
                       type="tel" 
                       required
                       className="w-full p-3 bg-white text-slate-900 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-pink/50 focus:border-brand-pink outline-none transition-all placeholder:text-slate-400"
-                      placeholder="Ex: 11 99999-9999"
+                      placeholder="Ex: (19) 99999-9999"
                       value={order.customerPhone}
                       onChange={e => setOrder({...order, customerPhone: e.target.value})}
                     />
