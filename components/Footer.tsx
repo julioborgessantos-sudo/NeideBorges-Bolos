@@ -16,7 +16,13 @@ const Footer: React.FC = () => {
               Transformando ingredientes simples em momentos inesquecíveis. Bolos caseiros feitos com amor e tradição.
             </p>
             <div className="flex gap-4 pt-2">
-              <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-pink transition-colors">
+              <a 
+                href="https://www.instagram.com/neideborges.confeitaria" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-pink transition-colors"
+                aria-label="Instagram da Neide Borges"
+              >
                 <Instagram className="w-5 h-5" />
               </a>
               <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-pink transition-colors">
