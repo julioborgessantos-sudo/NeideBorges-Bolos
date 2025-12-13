@@ -31,7 +31,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     id: 3,
     category: 'Naked Cake',
     title: 'Naked Cake de Frutas',
-    image: 'https://images.unsplash.com/photo-1576618148400-f54bed99fcf0?q=80&w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1535141192574-5d4897c12636?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: 4,

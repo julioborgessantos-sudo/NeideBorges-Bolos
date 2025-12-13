@@ -25,9 +25,6 @@ const Footer: React.FC = () => {
               >
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-pink transition-colors">
-                <Facebook className="w-5 h-5" />
-              </a>
             </div>
           </div>
 

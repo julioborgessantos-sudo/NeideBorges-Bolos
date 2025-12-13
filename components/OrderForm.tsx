@@ -189,6 +189,7 @@ ${order.notes || "Nenhuma observação."}
                     <input 
                       type="text" 
                       required
+                      maxLength={60}
                       className="w-full p-3 bg-white text-slate-900 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-pink/50 focus:border-brand-pink outline-none transition-all placeholder:text-slate-400"
                       placeholder="Ex: Maria da Silva"
                       value={order.customerName}
@@ -200,6 +201,7 @@ ${order.notes || "Nenhuma observação."}
                     <input 
                       type="tel" 
                       required
+                      maxLength={20}
                       className="w-full p-3 bg-white text-slate-900 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-pink/50 focus:border-brand-pink outline-none transition-all placeholder:text-slate-400"
                       placeholder="Ex: (19) 99999-9999"
                       value={order.customerPhone}
@@ -210,6 +212,7 @@ ${order.notes || "Nenhuma observação."}
                     <label className="block text-sm font-medium text-slate-600 mb-1">Endereço de Entrega (Opcional)</label>
                     <input 
                       type="text" 
+                      maxLength={100}
                       className="w-full p-3 bg-white text-slate-900 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-pink/50 focus:border-brand-pink outline-none transition-all placeholder:text-slate-400"
                       placeholder="Rua, Número, Bairro"
                       value={order.customerAddress}
@@ -219,8 +222,9 @@ ${order.notes || "Nenhuma observação."}
                   <div>
                     <label className="block text-sm font-medium text-slate-600 mb-1">Observações</label>
                     <textarea 
+                      maxLength={300}
                       className="w-full p-3 bg-white text-slate-900 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-pink/50 focus:border-brand-pink outline-none transition-all h-24 resize-none placeholder:text-slate-400"
-                      placeholder="Ex: Escrever 'Parabéns João' no topo..."
+                      placeholder="Ex: Escrever 'Parabéns João' no topo... (Máx 300 caracteres)"
                       value={order.notes}
                       onChange={e => setOrder({...order, notes: e.target.value})}
                     />
